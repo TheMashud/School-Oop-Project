@@ -5,25 +5,27 @@ class Person:
 
     
 class Teacher(Person):
-    def __init__(self, name, subject) -> None:
-        self.subject = subject
+    def __init__(self, name) -> None:
         super().__init__(name)
 
     def teach(self):
         pass
 
-    def take_exam(self, subject, students):
+    def __repr__(self) -> str:
+        return f'{self.name} '
+    
+    def take_exam(self, students):
         for student in students:
             marks = random.randint(0,100)
             # TODO: set marks for the subject for each student 
         
 
+
 class Student(Person):
-    def __init__(self, name) -> None:
+    def __init__(self, name, classroom) -> None:
         super().__init__(name)
-        self.classroom = None
+        self.classroom = classroom
         self.__id = None
-        self.subjects = []
         self.marks = {}
         self.grade = None
 

@@ -13,12 +13,24 @@ class School:
         self.teachers[subject] = teacher
     
 
-    def student_admisson(self, student, classroom_name): #exmple classroom_name = Islamic studies class room
-        if classroom_name in self.classrooms:
-            # TODO: set student id,(rool num) at the time of adding the student
-            self.classrooms[classroom_name].add_student(student)
+    def student_admission(self, student):
+        className = student.classroom.name
+        if className in self.classrooms:
+            self.classrooms[className].add_student(student)
         else:
-            print(f'No classroom as named{classroom_name}')
+            print(f'No classroom as named{className}')
+
+    def __repr__(self) -> str:
+        print('-------All CLASSROOMES------------')
+        for key, value in self.classrooms.items():
+            print(key)
+
+        print("-------Students-------")
+        eight = self.classrooms['eight']
+        for student in eight.students:
+            print(student.name)
+        return ''
+
 
 
 class ClassRoom:
@@ -26,13 +38,17 @@ class ClassRoom:
         self.name = name
         #composition
         self.students = []
+        self.subjects = []
+
 
 
     def add_student(self, student):
         serial_id = f'{self.name}-{len(self.students) + 1}'
         student.id = serial_id
-        self.classroom = self.name
         self.students.append(student)
+
+    def add_subject(self, subject):
+        self.subjects.append(subject)
 
     def __str__(self) -> str:
         return f'{self.name}--{len(self.students)}'
@@ -41,3 +57,10 @@ class ClassRoom:
     def get_top_students(self):
         pass
 
+
+class Subject:
+    def __init__(self, name, teacher) -> None:
+        self.name = name
+        self.teacher = teacher
+        self.max_mark = 100
+        self.pass_marks = 30
