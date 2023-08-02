@@ -2,11 +2,16 @@ class School:
     def __init__(self, name, address) -> None:
         self.name = name
         self.address = address
+        self.teachers = []
         #composition
         self.classrooms = {} 
 
     def add_classroom(self, classroom):
         self.classrooms[classroom.name] = classroom
+
+    def add_teacher(self, subject, teacher):
+        self.teachers[subject] = teacher
+    
 
     def student_admisson(self, student, classroom_name): #exmple classroom_name = Islamic studies class room
         if classroom_name in self.classrooms:
@@ -33,3 +38,4 @@ class ClassRoom:
     #TODO: sort student by grade
     def get_top_students(self):
         pass
+
